@@ -1,0 +1,9 @@
+base: ghcr.io/vanilla-os/core:main
+name: Vanillin OS
+singlelayer: false
+labels:
+  maintainer: Maksym Hazevych <mhazevych@proton.me>
+args:
+  DEBIAN_FRONTEND: noninteractive
+runs:
+  - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends

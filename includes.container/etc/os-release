@@ -1,0 +1,8 @@
+PRETTY_NAME="Vanillin OS Pre-Release"
+NAME="Vanillin OS"
+VERSION_ID="0.1"
+VERSION="0.1 Pre-Release"
+VERSION_CODENAME="pre-release"
+ID=vanillin
+ID_LIKE=vanilla debian
+PRIVACY_POLICY_URL="https://vanillaos.org/os-privacy-policy"
