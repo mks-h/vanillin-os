@@ -1,0 +1,7 @@
+name: vanilla-cleanup
+type: shell
+commands:
+  - apt remove -y build-essential debhelper libbtrfs-dev libdevmapper-dev libgpgme-dev dh-golang gcc pkg-config
+  - apt remove -y meson make
+  - apt autoremove -y
+  - apt clean

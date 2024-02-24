@@ -20,3 +20,9 @@ modules:
       - cp /sources/vanilla-tools/cur-gpu /usr/bin/cur-gpu
       - chmod +x /usr/bin/lpkg
       - chmod +x /usr/bin/cur-gpu
+
+  - name: packages-modules
+    type: includes
+    includes:
+      - modules/00-albius
+      - modules/998-vanilla-cleanup
