@@ -15,7 +15,7 @@ podman image build -t vanillinos .
 
 [vib]: https://github.com/vanilla-os/Vib
 
-# Contributing
+## Contributing
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 
