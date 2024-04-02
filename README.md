@@ -22,3 +22,16 @@ podman image build -t vanillinos .
 Commit messages follow the [Conventional Commits Specification][conventional-commits]
 
 [conventional-commits]: https://conventionalcommits.org
+
+## Generating configuration for installer
+
+To generate configuration for the [Albius installer][albius],
+you can run the `configure-inst.sh` script, like so:
+
+```
+./configure-inst.sh install.template.json > install.conf.json
+```
+
+Alternatively, manually modify `install.template.json`
+
+[albius]: https://github.com/Vanilla-OS/Albius
