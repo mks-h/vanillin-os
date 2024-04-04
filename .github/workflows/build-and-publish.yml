@@ -2,12 +2,13 @@ name: Build & Publish
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "devel"]
   workflow_dispatch:
 
 env:
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  BRANCH: ${{ github.ref_name }}
 
 jobs:
   build:
@@ -20,21 +21,21 @@ jobs:
           recipe: "recipe.yml"
 
       - name: Build the OS image
-        run: docker image build -f Containerfile --tag ghcr.io/mks-h/vanillin-os:main .
+        run: docker image build -f Containerfile --tag ghcr.io/mks-h/vanillin-os:${{ env.BRANCH }} .
 
       - name: Push the OS image to GHCR
         if: github.repository == 'mks-h/vanillin-os'
         run: |
           docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
-          docker image push "ghcr.io/mks-h/vanillin-os:main"
+          docker image push "ghcr.io/mks-h/vanillin-os:${{ env.BRANCH }}"
 
       - name: Build the installer image
         run: |
           ./make-installer-containerfile.sh
-          docker image build -f Containerfile.installer --tag ghcr.io/mks-h/vanillin-installer:main .
+          docker image build -f Containerfile.installer --tag ghcr.io/mks-h/vanillin-installer:${{ env.BRANCH }} .
 
       - name: Push the installer image to GHCR
         if: github.repository == 'mks-h/vanillin-os'
         run: |
           docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
-          docker image push "ghcr.io/mks-h/vanillin-installer:main"
+          docker image push "ghcr.io/mks-h/vanillin-installer:${{ env.BRANCH }}"
