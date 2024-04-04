@@ -27,3 +27,14 @@ jobs:
         run: |
           docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
           docker image push "ghcr.io/mks-h/vanillin-os:main"
+
+      - name: Build the installer image
+        run: |
+          ./make-installer-containerfile.sh
+          docker image build -f Containerfile.installer --tag ghcr.io/mks-h/vanillin-installer:main .
+
+      - name: Push the installer image to GHCR
+        if: github.repository == 'mks-h/vanillin-os'
+        run: |
+          docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
+          docker image push "ghcr.io/mks-h/vanillin-installer:main"
