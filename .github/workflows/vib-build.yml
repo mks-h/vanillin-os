@@ -19,11 +19,10 @@ jobs:
         with:
           recipe: "recipe.yml"
 
-      - name: Build the Docker image
+      - name: Build the OS image
         run: docker image build -f Containerfile --tag ghcr.io/mks-h/vanillin-os:main .
 
-      # Push the image to GHCR (Image Registry)
-      - name: Push To GHCR
+      - name: Push the OS image to GHCR
         if: github.repository == 'mks-h/vanillin-os'
         run: |
           docker login ghcr.io -u ${{ env.REGISTRY_USER }} -p ${{ env.REGISTRY_PASSWORD }}
