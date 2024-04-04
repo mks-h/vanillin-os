@@ -1,0 +1,1 @@
+cat Containerfile Containerfile.installer.partial > Containerfile.installer

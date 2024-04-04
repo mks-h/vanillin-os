@@ -1,0 +1,10 @@
+FROM bitnami/minideb:bookworm
+RUN mkdir -p /tmp/packages
+COPY --from=0 /sources/albius*.deb /tmp/packages/
+RUN cd /tmp/packages && for deb in *.deb; do dpkg --extract $deb /; done
+RUN rm -rf /tmp/packages
+RUN install_packages lvm2 golang-go libgpgme11 parted
+RUN install_packages jq
+ADD configure-inst.sh /usr/bin/configure-inst
+ADD install.template.json /usr/share/configure-inst/install.template.json
+ENTRYPOINT /usr/bin/configure-inst /usr/share/configure-inst/install.template.json > /tmp/install.json && /usr/bin/albius /tmp/install.json

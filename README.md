@@ -35,3 +35,15 @@ you can run the `configure-inst.sh` script, like so:
 Alternatively, manually modify `install.template.json`
 
 [albius]: https://github.com/Vanilla-OS/Albius
+
+## Installing
+
+To install Vanillin OS, for now you'll need to run a special
+container with the installer from any live environment.
+Pass it the device to install onto, and answer prompts to
+generate installation configuration. It will begin installation
+right after you answer all propmts, without any confirmations.
+
+```
+podman run --rm -ti --device /dev/sdX:/dev/vda:rwm ghcr.io/mks-h/vanillin-os-installer:main
+```
